@@ -75,10 +75,10 @@ public class WebIntent extends CordovaPlugin {
                 }
 
                 String packageName = args.getJSONArray(0).getString(0);    
-                LaunchIntent launchIntent = this.cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+                Intent i = this.cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
                 
                 try {
-                    ((CordovaActivity)this.cordova.getActivity()).startActivity(launchIntent);
+                    ((CordovaActivity)this.cordova.getActivity()).startActivity(i);
                 } catch (ActivityNotFoundException e) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
                     return false;
