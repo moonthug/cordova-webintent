@@ -66,7 +66,22 @@ public class WebIntent extends CordovaPlugin {
                 //return new PluginResult(PluginResult.Status.OK);
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
                 return true;
+            } else if (action.equals("startApp")) {
+                if (args.length() != 1) {
+                    //return new PluginResult(PluginResult.Status.INVALID_ACTION);
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+                    return false;
+                }
 
+                String packageName = args.getJSONArray(0).getString(0);    
+                LaunchIntent launchIntent = this.cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
+                
+                try {
+                    ((CordovaActivity)this.cordova.getActivity()).startActivity(launchIntent);
+                } catch (ActivityNotFoundException e) {
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
+                    return false;
+                }
             } else if (action.equals("hasExtra")) {
                 if (args.length() != 1) {
                     //return new PluginResult(PluginResult.Status.INVALID_ACTION);
