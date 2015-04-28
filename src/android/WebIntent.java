@@ -74,7 +74,7 @@ public class WebIntent extends CordovaPlugin {
                     return false;
                 }
 
-                String packageName = args.getJSONArray(0).getString(0);    
+                String packageName = args.getString(0);   
                 Intent i = this.cordova.getActivity().getPackageManager().getLaunchIntentForPackage(packageName);
                 
                 try {
