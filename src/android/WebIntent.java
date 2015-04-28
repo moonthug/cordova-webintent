@@ -79,6 +79,8 @@ public class WebIntent extends CordovaPlugin {
                 
                 try {
                     ((CordovaActivity)this.cordova.getActivity()).startActivity(i);
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
+                    return true;
                 } catch (ActivityNotFoundException e) {
                     callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.INVALID_ACTION));
                     return false;
