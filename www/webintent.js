@@ -25,6 +25,14 @@
         }, 'WebIntent', 'startActivity', [params]);
     };
 
+    WebIntent.prototype.startApp = function(params, success, fail) {
+        return cordova.exec(function(args) {
+            success(args);
+        }, function(args) {
+            fail(args);
+        }, 'WebIntent', 'startApp', [params]);
+    };
+
     WebIntent.prototype.hasExtra = function(params, success, fail) {
         return cordova.exec(function(args) {
             success(args);
